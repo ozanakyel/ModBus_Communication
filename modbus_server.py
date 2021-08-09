@@ -17,6 +17,7 @@ try:
             state = DataBank.get_words(1)
             print(f"register 1'daki deger {state} olarak degisti")
             sleep(0.5)
+            #deneme git klone
 except:
     print("server stoplandi")
     server.stop()
