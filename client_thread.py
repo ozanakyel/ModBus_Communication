@@ -13,7 +13,7 @@ class ClientThreading(Thread):
         self.port = 502  # 502
         self.client = ModbusClient(self.host, self.port)
         print(f"hedef {self.host} ve {self.port}")
-        self.register_sifir = None
+        self.register_0 = None
         self.register_1 = None
         self.register_2 = None
         self.register_3 = None
@@ -26,7 +26,7 @@ class ClientThreading(Thread):
         while True:
             if self.client.open():
                 # print("client canli")
-                self.register_sifir = self.client.read_holding_registers(0)
+                self.register_0 = self.client.read_holding_registers(0)
                 self.register_1 = self.client.read_holding_registers(1)
                 self.register_2 = self.client.read_holding_registers(2)
                 self.register_3 = self.client.read_holding_registers(3)
@@ -39,7 +39,7 @@ class ClientThreading(Thread):
                 print("baglanti kurulamadi")
             # sleep(2)
 
-    def get_registersifir(self):
+    def get_registers_value(self):
         while True:
             if self.register_sifir != self.register_sifir_old:
                 self.register_sifir_old = self.register_sifir
@@ -50,3 +50,18 @@ class ClientThreading(Thread):
                         self.register_4,
                         self.register_5,
                         self.register_6]
+
+"""    def get_registers_value(self):
+        while True:
+            if self.register_sifir != self.register_sifir_old:
+                self.register_sifir_old = self.register_sifir
+                return [self.register_sifir,
+                        self.register_1,
+                        self.register_2,
+                        self.register_3,
+                        self.register_4,
+                        self.register_5,
+                        self.register_6]"""
+
+
+#    https://pymodbustcp.readthedocs.io/en/latest/examples/modbus_thread.html    ////  burdaki adreste güzel bir register yoklama örneği var incelenmeli ona göre revizyon yapılabilir
